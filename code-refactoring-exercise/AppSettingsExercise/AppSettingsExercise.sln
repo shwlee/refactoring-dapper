@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettingsExercise", "AppSettingsExercise\AppSettingsExercise.csproj", "{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF683EED-885D-4992-9F05-31B5D4C543D6}
+	EndGlobalSection
+EndGlobal
