@@ -1,6 +1,9 @@
+using AppSettingsExercise.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Init();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

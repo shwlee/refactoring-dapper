@@ -1,4 +1,4 @@
-namespace AppSettingsExercise;
+namespace AppSettings.Domain.Domains.Weathers.DTOs;
 
 public class WeatherForecast
 {

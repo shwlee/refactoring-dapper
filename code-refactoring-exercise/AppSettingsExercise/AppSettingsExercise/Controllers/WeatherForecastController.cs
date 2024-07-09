@@ -1,3 +1,7 @@
+using AppSettings.Domain.Contracts;
+using AppSettings.Domain.Domains.Weathers.DTOs;
+using AppSettings.Domain.Domains.Weathers.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppSettingsExercise.Controllers;
@@ -5,27 +9,25 @@ namespace AppSettingsExercise.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    
 
+    private readonly IMediator _mediator;
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly IAppSettingVault _appSettingVault;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(IMediator mediator, ILogger<WeatherForecastController> logger, IAppSettingVault appSettingVault)
     {
+        _mediator = mediator;
         _logger = logger;
+        _appSettingVault = appSettingVault;
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public async Task<WeatherForecast> Get(CancellationToken cancellation)
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-        {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+        var query = new GetWeatherForecastQuery();
+        var result = await _mediator.Send(query, cancellation);
+
+        return result;
     }
 }
