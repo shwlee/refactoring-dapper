@@ -1,4 +1,4 @@
-﻿namespace AppSettingsExercise.Models;
+﻿namespace AppSettingsExercise.configs;
 
 public class AppSetting
 {

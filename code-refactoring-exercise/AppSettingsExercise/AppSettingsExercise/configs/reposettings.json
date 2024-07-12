@@ -1,0 +1,6 @@
+{
+  "RepoSetting": {
+    "ConnectionString": "sql.azure.com",
+    "MaxPoolSize" : 100
+  }
+}

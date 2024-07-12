@@ -1,6 +1,6 @@
 ﻿using AppSettings.Domain.Contracts;
+using AppSettingsExercise.configs;
 using AppSettingsExercise.Exceptions;
-using AppSettingsExercise.Models;
 using Microsoft.Extensions.Options;
 
 namespace AppSettingsExercise.Services;
@@ -25,7 +25,7 @@ public class AppSettingVault : IAppSettingVault
         _appSetting = _appSettingsMonitor.CurrentValue;
         _appSettingsMonitor.OnChange(appSetting =>
         {
-            _appSetting = appSetting;            
+            _appSetting = appSetting;
         });
     }
 

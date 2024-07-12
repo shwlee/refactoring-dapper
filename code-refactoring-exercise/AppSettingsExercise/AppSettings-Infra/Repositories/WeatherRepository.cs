@@ -3,7 +3,7 @@ using AppSettings.Domain.Domains.Weathers.DTOs;
 using AppSettings.Infra.Contracts;
 
 namespace AppSettings.Infra.Repositories;
-public sealed class WeatherRepository(IAppSettingVault appSettingVault) : IWeatherRepository
+public sealed class WeatherRepository(IAppSettingVault appSettingVault, IRepoSettingVault repoSettingVault) : IWeatherRepository
 {
     private static readonly string[] Summaries =
     [
@@ -11,6 +11,7 @@ public sealed class WeatherRepository(IAppSettingVault appSettingVault) : IWeath
     ];
 
     private readonly IAppSettingVault _appSettingVault = appSettingVault;
+    private readonly IRepoSettingVault _repoSettingVault = repoSettingVault;
 
     public Task<WeatherForecast> GetWeatherForecast(CancellationToken cancellation)
         => Task.FromResult(new WeatherForecast

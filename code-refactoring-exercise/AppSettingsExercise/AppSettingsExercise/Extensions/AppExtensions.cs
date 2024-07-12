@@ -2,7 +2,7 @@
 using AppSettings.Domain.Contracts;
 using AppSettings.Infra.Contracts;
 using AppSettings.Infra.Repositories;
-using AppSettingsExercise.Models;
+using AppSettingsExercise.configs;
 using AppSettingsExercise.Services;
 
 namespace AppSettingsExercise.Extensions;
@@ -23,22 +23,26 @@ public static class AppExtensions
 
     public static void ConfigureAppSettings(this IServiceCollection services, IConfigurationBuilder configBuilder, string environmentName)
     {
-        configBuilder.AddJsonFile($"appsettings.{environmentName.ToLower()}.json", false, true);
+        var configPath = "./configs";
+        configBuilder.AddJsonFile(Path.Combine(configPath, $"appsettings.{environmentName.ToLower()}.json"), false, true);
+        configBuilder.AddJsonFile(Path.Combine(configPath, $"reposettings.{environmentName.ToLower()}.json"), false, true);
         var config = configBuilder.Build();
 
         services.Configure<AppSetting>(config.GetSection(nameof(AppSetting)));
-        
+        services.Configure<RepoSetting>(config.GetSection(nameof(RepoSetting)));
+
         //// IOptions 를 사용하면 Transient 로 등록
         //services.AddTransient<IAppSettingVault, AppSettingVault>();
-        
+
         // IOptionsMonitor 로 사용하면 singleton 으로 등록
         services.AddSingleton<IAppSettingVault, AppSettingVault>();
+        services.AddSingleton<IRepoSettingVault, RepoSettingVault>();
         services.AddOptions();
     }
 
     public static void SetMediator(this IServiceCollection services)
     {
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AppSettingsApplication).Assembly));        
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AppSettingsApplication).Assembly));
     }
 
     public static void SetRepositories(this IServiceCollection services)

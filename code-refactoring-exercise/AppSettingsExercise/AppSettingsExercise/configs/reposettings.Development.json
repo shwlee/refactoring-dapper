@@ -1,0 +1,6 @@
+{
+  "RepoSetting": {
+    "ConnectionString": "local:13309",
+    "MaxPoolSize": 10
+  }
+}

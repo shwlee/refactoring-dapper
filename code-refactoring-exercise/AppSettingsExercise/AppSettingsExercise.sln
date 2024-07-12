@@ -5,11 +5,19 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSettingsExercise", "AppSettingsExercise\AppSettingsExercise.csproj", "{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettings-Application", "AppSettings-Application\AppSettings-Application.csproj", "{CD8F793A-2313-4431-A32C-AE904A2DA925}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSettings-Application", "AppSettings-Application\AppSettings-Application.csproj", "{CD8F793A-2313-4431-A32C-AE904A2DA925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettings-Domain", "AppSettings-Domain\AppSettings-Domain.csproj", "{D6628D07-BFF9-48EE-9F23-B5E0C8692654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSettings-Domain", "AppSettings-Domain\AppSettings-Domain.csproj", "{D6628D07-BFF9-48EE-9F23-B5E0C8692654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppSettings-Infra", "AppSettings-Infra\AppSettings-Infra.csproj", "{8944BE5E-76FF-4DC7-BE60-4EB09F5A413B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppSettings-Infra", "AppSettings-Infra\AppSettings-Infra.csproj", "{8944BE5E-76FF-4DC7-BE60-4EB09F5A413B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Entry", "01. Entry", "{2965589B-13B9-4F15-A75E-7E192A41A909}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Domain", "02. Domain", "{36305B8A-1451-4EBA-B744-C9BCE4B38E76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Application", "03. Application", "{533C398C-1917-43DC-801F-25A06C16BCBC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04. Infra", "04. Infra", "{66620C7D-0124-4D35-B836-98C3A163B651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +44,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{527F4FBF-FB06-4887-AE92-9F9DAE9E65CD} = {2965589B-13B9-4F15-A75E-7E192A41A909}
+		{CD8F793A-2313-4431-A32C-AE904A2DA925} = {533C398C-1917-43DC-801F-25A06C16BCBC}
+		{D6628D07-BFF9-48EE-9F23-B5E0C8692654} = {36305B8A-1451-4EBA-B744-C9BCE4B38E76}
+		{8944BE5E-76FF-4DC7-BE60-4EB09F5A413B} = {66620C7D-0124-4D35-B836-98C3A163B651}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DF683EED-885D-4992-9F05-31B5D4C543D6}
