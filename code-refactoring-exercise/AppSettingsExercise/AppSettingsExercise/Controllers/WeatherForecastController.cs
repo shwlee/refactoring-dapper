@@ -1,19 +1,18 @@
 using AppSettings.Domain.Contracts;
-using AppSettings.Domain.Domains.Weathers.DTOs;
 using AppSettings.Domain.Domains.Weathers.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppSettingsExercise.Controllers;
+
 [ApiController]
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    
-
     private readonly IMediator _mediator;
     private readonly ILogger<WeatherForecastController> _logger;
     private readonly IAppSettingVault _appSettingVault;
+
 
     public WeatherForecastController(IMediator mediator, ILogger<WeatherForecastController> logger, IAppSettingVault appSettingVault)
     {
@@ -23,11 +22,11 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public async Task<WeatherForecast> Get(CancellationToken cancellation)
+    public async Task<IActionResult> Get(CancellationToken cancellation)
     {
         var query = new GetWeatherForecastQuery();
         var result = await _mediator.Send(query, cancellation);
 
-        return result;
+        return Ok(result);
     }
 }

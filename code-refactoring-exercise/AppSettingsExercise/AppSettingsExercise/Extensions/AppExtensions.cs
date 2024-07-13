@@ -13,26 +13,27 @@ public static class AppExtensions
     {
         var services = hostBuilder.Services;
         var configBuilder = hostBuilder.Configuration;
-        var environmentName = hostBuilder.Environment.EnvironmentName;
-        services.ConfigureAppSettings(configBuilder, environmentName);
+        var environment = hostBuilder.Environment;
+
+        services.ConfigureAppSettings(configBuilder, environment);
 
         // 추후 다른 의존성 설정이나 초기화 코드 추가.
         services.SetMediator();
         services.SetRepositories();
     }
 
-    public static void ConfigureAppSettings(this IServiceCollection services, IConfigurationBuilder configBuilder, string environmentName)
+    public static void ConfigureAppSettings(this IServiceCollection services, IConfigurationBuilder configBuilder, IHostEnvironment hostEnv)
     {
-        var configPath = "./configs";
-        configBuilder.AddJsonFile(Path.Combine(configPath, $"appsettings.{environmentName.ToLower()}.json"), false, true);
-        configBuilder.AddJsonFile(Path.Combine(configPath, $"reposettings.{environmentName.ToLower()}.json"), false, true);
+
+        var configPath = Path.Combine(hostEnv.ContentRootPath, "configs");
+        configBuilder.AddJsonFile(Path.Combine(configPath, "appsettings.json"), optional: false, reloadOnChange: true)
+                      .AddJsonFile(Path.Combine(configPath, $"appsettings.{hostEnv.EnvironmentName}.json"), optional: true, reloadOnChange: true);
+        configBuilder.AddJsonFile(Path.Combine(configPath, "reposettings.json"), optional: false, reloadOnChange: true)
+                      .AddJsonFile(Path.Combine(configPath, $"reposettings.{hostEnv.EnvironmentName}.json"), optional: true, reloadOnChange: true);
         var config = configBuilder.Build();
 
         services.Configure<AppSetting>(config.GetSection(nameof(AppSetting)));
         services.Configure<RepoSetting>(config.GetSection(nameof(RepoSetting)));
-
-        //// IOptions 를 사용하면 Transient 로 등록
-        //services.AddTransient<IAppSettingVault, AppSettingVault>();
 
         // IOptionsMonitor 로 사용하면 singleton 으로 등록
         services.AddSingleton<IAppSettingVault, AppSettingVault>();

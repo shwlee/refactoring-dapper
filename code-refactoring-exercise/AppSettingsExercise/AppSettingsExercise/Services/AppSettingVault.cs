@@ -12,6 +12,7 @@ public class AppSettingVault : IAppSettingVault
 
     private AppSetting? _appSetting;
 
+    // IOptions<T> 만 사용하면 아래만 사용해도 문제없다.
     //public AppSettingVault(IConfiguration config, IOptions<AppSetting> options)
     //{
     //    _config = config;
@@ -25,6 +26,7 @@ public class AppSettingVault : IAppSettingVault
         _appSetting = _appSettingsMonitor.CurrentValue;
         _appSettingsMonitor.OnChange(appSetting =>
         {
+            Console.WriteLine("appsettings.json reloaded.");
             _appSetting = appSetting;
         });
     }
